@@ -54,9 +54,9 @@
 import Drawer from 'primevue/drawer';
 import Button from 'primevue/button';
 
-import { useAppStore } from '@/stores/app.ts';
-import AppLogo from '@/components/AppLogo.vue';
-import { useShopListsStore } from '@/stores/shopLists.ts';
+import { useAppStore } from '../stores/app';
+import AppLogo from './AppLogo.vue';
+import { useShopListsStore } from '../stores/shopLists';
 
 const appStore = useAppStore();
 

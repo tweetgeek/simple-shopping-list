@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import { onMounted, ref } from 'vue';
-import OnboardingModal from '@/components/OnboardingModal.vue';
+import OnboardingModal from './components/OnboardingModal.vue';
 import { Toast } from 'primevue';
-import { PersistStore } from '../utils/PersistStore.ts';
-import { useAppStore } from '@/stores/app.ts';
+import { PersistStore } from './utils/PersistStore.ts';
+import { useAppStore } from './stores/app.ts';
 
 const appStore = useAppStore();
 

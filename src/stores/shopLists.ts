@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
-import type { IList } from '../../utils/types.ts';
+import type { IList } from '../utils/types.ts';
 
 export const useShopListsStore = defineStore('shopLists', () => {
   const lists = ref<IList[]>([

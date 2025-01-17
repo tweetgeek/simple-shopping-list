@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AppHeader from '@/components/AppHeader.vue';
-import AppDrawer from '@/components/AppDrawer.vue';
+import AppHeader from '../components/AppHeader.vue';
+import AppDrawer from '../components/AppDrawer.vue';
 </script>
 
 <template>

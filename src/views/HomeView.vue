@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import AppLayout from '@/components/AppLayout.vue';
-import { useShopListsStore } from '@/stores/shopLists.ts';
-import ListContainer from '@/components/List/ListContainer.vue';
-import NoListSelected from '@/components/List/NoListSelected.vue';
-import { useAppStore } from '@/stores/app.ts';
+import AppLayout from '../components/AppLayout.vue';
+import { useShopListsStore } from '../stores/shopLists.ts';
+import ListContainer from '../components/List/ListContainer.vue';
+import NoListSelected from '../components/List/NoListSelected.vue';
+import { useAppStore } from '../stores/app.ts';
 
 const shoppListsStore = useShopListsStore();
 const appStore = useAppStore();

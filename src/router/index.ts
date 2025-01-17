@@ -17,11 +17,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SettingsView.vue'),
     },
-    {
-      path: '/create',
-      name: 'create',
-      component: () => import('../views/CreateListView.vue'),
-    },
+    // {
+    //   path: '/create',
+    //   name: 'create',
+    //   component: () => import('../views/CreateListViewvue'),
+    // },
   ],
 });
 

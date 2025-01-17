@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import { useAppStore } from '@/stores/app.ts';
+import { useAppStore } from '../stores/app';
 
 const appStore = useAppStore();
 </script>

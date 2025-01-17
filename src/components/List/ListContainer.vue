@@ -27,11 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import type { IList } from '../../../utils/types.ts';
-import ListItem from '@/components/List/ListItem.vue';
-import ListAddForm from '@/components/List/ListAddForm.vue';
-import { useShopListsStore } from '@/stores/shopLists.ts';
-import { useAppStore } from '@/stores/app.ts';
+import type { IList } from '../../utils/types.ts';
+import ListItem from './ListItem.vue';
+import ListAddForm from './ListAddForm.vue';
+import { useShopListsStore } from '../../stores/shopLists';
+import { useAppStore } from '../../stores/app';
 import { ref } from 'vue';
 
 const props = defineProps<{

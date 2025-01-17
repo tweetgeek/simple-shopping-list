@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { Checkbox } from 'primevue';
-import type { IListItem } from '../../../utils/types.ts';
+import type { IListItem } from '../../utils/types';
 import Button from 'primevue/button';
 
 defineProps<{

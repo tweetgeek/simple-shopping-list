@@ -1,10 +1,11 @@
-import { useAppStore } from '@/stores/app.ts';
-import { useShopListsStore } from '@/stores/shopLists.ts';
+import { useAppStore } from '../stores/app.ts';
+import { useShopListsStore } from '../stores/shopLists.ts';
 import { storage } from './storage.ts';
-import type { PiniaStore } from './types.ts';
 
 export class PersistStore {
-  stores: Array<PiniaStore<typeof useAppStore> | PiniaStore<typeof useShopListsStore>> = [];
+  // stores: Array<PiniaStore<typeof useAppStore> | PiniaStore<typeof useShopListsStore>> = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  stores: Array<any> = [];
 
   constructor() {
     this.stores = [useAppStore(), useShopListsStore()];
@@ -18,6 +19,7 @@ export class PersistStore {
       const content = await storage.load(store.$id);
       if (content) {
         console.log('revert content');
+        // @ts-ignore
         store.$patch(content);
 
         console.log('store', store, content);
@@ -29,6 +31,7 @@ export class PersistStore {
 
   async bindSyncAction() {
     for (const store of this.stores) {
+      // @ts-ignore
       store.$subscribe((mutation, state) => {
         if (mutation.events.type === 'set') {
           console.log('mutation, state', mutation, state);

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import AppLayout from '@/components/AppLayout.vue';
+import AppLayout from '~/components/AppLayout.vue';
 import Button from 'primevue/button';
 import { Form, FormField } from '@primevue/forms';
 import { Checkbox, InputGroup, InputGroupAddon, InputText, Message } from 'primevue';
-import { useShopListsStore } from '@/stores/shopLists.ts';
-import router from '@/router';
+import { useShopListsStore } from '~/stores/shopLists.ts';
+import router from '~/router';
 import { reactive, ref } from 'vue';
 import { useToast } from 'primevue/usetoast';
 import { z } from 'zod';
@@ -13,7 +13,7 @@ import {
   DEFAULT_STORAGE_ITEM,
   type StorageList,
   type StorageListItem,
-} from '../../utils/storage.ts';
+} from '~/utils/storage.ts';
 import type { FormSubmitEvent } from '@primevue/forms/form';
 import { v4 as uuidv4 } from 'uuid';
 

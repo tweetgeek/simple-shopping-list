@@ -1,4 +1,12 @@
 {
+  "buildOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
   "files": [],
   "references": [
     {
