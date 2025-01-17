@@ -5,7 +5,7 @@ import OnboardingModal from './components/OnboardingModal.vue';
 import { Toast } from 'primevue';
 import { PersistStore } from './utils/PersistStore.ts';
 import { useAppStore } from './stores/app.ts';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 const appStore = useAppStore();
 
