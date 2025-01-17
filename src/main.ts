@@ -10,7 +10,7 @@ import Ripple from 'primevue/ripple';
 import StyleClass from 'primevue/styleclass';
 import { SafeArea } from '@capacitor-community/safe-area';
 import ToastService from 'primevue/toastservice';
-import * as Sentry from "@sentry/vue";
+import * as Sentry from '@sentry/vue';
 
 SafeArea.enable({
   config: {
@@ -24,23 +24,24 @@ SafeArea.enable({
 
 const app = createApp(App);
 
-Sentry.init({
-  app,
-  dsn: "https://931e081d95c9de3182d3c541bc6b7a54@o415685.ingest.us.sentry.io/4508659509886976",
-  environment: "development",
-  integrations: [
-    // Sentry.browserTracingIntegration({ router }),
-    // Sentry.replayIntegration(),
-  ],
-  // Tracing
-  // tracesSampleRate: 1.0, //  Capture 100% of the transactions
-  // // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-  // tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
-  // // Session Replay
-  // replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
-  // replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
-});
-
+if (import.meta.env.VITE_APP_SENTRY_DSN) {
+  Sentry.init({
+    app,
+    dsn: import.meta.env.VITE_APP_SENTRY_DSN,
+    environment: import.meta.env.VITE_APP_ENV ?? 'production',
+    integrations: [
+      // Sentry.browserTracingIntegration({ router }),
+      // Sentry.replayIntegration(),
+    ],
+    // Tracing
+    // tracesSampleRate: 1.0, //  Capture 100% of the transactions
+    // // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+    // tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
+    // // Session Replay
+    // replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+    // replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
+  });
+}
 
 const pinia = createPinia();
 app.use(pinia);

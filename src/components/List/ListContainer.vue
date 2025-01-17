@@ -4,6 +4,7 @@
       {{ props.list.name }}
     </p>
   </div>
+
   <ul class="flex flex-col gap-2 list-none">
     <template v-if="props.list.items.length === 0">
       <li>
@@ -31,6 +32,7 @@ import ListItem from '@/components/List/ListItem.vue';
 import ListAddForm from '@/components/List/ListAddForm.vue';
 import { useShopListsStore } from '@/stores/shopLists.ts';
 import { useAppStore } from '@/stores/app.ts';
+import { ref } from 'vue';
 
 const props = defineProps<{
   list: IList;
@@ -46,4 +48,11 @@ const onItemToggle = (index: number) => {
 const onItemRemove = (index: number) => {
   shopListsStore.removeItem(props.list.id, index);
 };
+
+const value = ref([
+  { label: 'Apps', color: '#34d399', value: 16 },
+  { label: 'Messages', color: '#fbbf24', value: 8 },
+  { label: 'Media', color: '#60a5fa', value: 24 },
+  { label: 'System', color: '#c084fc', value: 10 },
+]);
 </script>
