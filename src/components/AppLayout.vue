@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import AppHeader from '../components/AppHeader.vue';
-import AppDrawer from '../components/AppDrawer.vue';
 </script>
 
 <template>
-  <AppDrawer />
-
   <AppHeader>
+    <template #left>
+      <slot name="left" />
+    </template>
     <template #center>
       <slot name="center" />
     </template>
@@ -15,7 +15,7 @@ import AppDrawer from '../components/AppDrawer.vue';
     </template>
   </AppHeader>
 
-  <main class="w-full h-full overflow-auto">
+  <main class="w-full h-full overflow-hidden">
     <slot />
   </main>
 </template>

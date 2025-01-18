@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import AppLayout from '../components/AppLayout.vue';
-import { useShopListsStore } from '../stores/shopLists.ts';
-import ListContainer from '../components/List/ListContainer.vue';
-import NoListSelected from '../components/List/NoListSelected.vue';
-import { useAppStore } from '../stores/app.ts';
+import ListContainer from '../components/ProductsList/ListContainer.vue';
+import ListAddForm from '../components/ProductsList/ListAddForm.vue';
+import { ProgressBar } from 'primevue';
+import { useProductsStore } from '../stores/products';
+import { useAppStore } from '../stores/app';
+import { computed } from 'vue';
 
-const shoppListsStore = useShopListsStore();
 const appStore = useAppStore();
+const productsStore = useProductsStore();
+
+const doneMeter = computed(() => {
+  return Math.ceil((productsStore.checkedProducts().length / productsStore.products.length) * 100);
+});
 </script>
 
 <template>
@@ -21,9 +27,20 @@ const appStore = useAppStore();
       <span class="text-cyan-600" v-else @click="appStore.editModeEnabled = true">Edit</span>
     </template>
 
-    <div class="pl-4 pr-4 pt-2 flex flex-col gap-3 pb-4">
-      <ListContainer v-if="shoppListsStore.currentList" :list="shoppListsStore.currentList" />
-      <NoListSelected v-else />
+    <div class="flex flex-col w-full h-full overflow-hidden max-h-120">
+      <div class="flex flex-col w-full h-full gap-2">
+        <div class="flex flex-1 w-full justify-center">
+          <p class="font-bold uppercase truncate">Products</p>
+        </div>
+
+        <div class="pl-2 pr-2">
+          <ProgressBar v-if="productsStore.products.length" :value="doneMeter" />
+        </div>
+
+        <ListContainer :products="productsStore.products" />
+
+        <ListAddForm v-if="appStore.editModeEnabled" />
+      </div>
     </div>
   </AppLayout>
 </template>

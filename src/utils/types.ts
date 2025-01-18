@@ -10,20 +10,9 @@ export type PiniaStore<T extends (...args: any) => any> = Omit<
   keyof ReturnType<typeof defineStore>
 >;
 
-export interface IListItem {
+export interface IProduct {
   name: string;
   checkedAt: Date | null;
 }
 
-export interface IList {
-  id: string;
-  name: string;
-  items: IListItem[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface IStorageLists {
-  currentListId: string | null;
-  lists: IList[];
-}
+export type IProducts = IProduct[];

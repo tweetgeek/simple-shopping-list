@@ -1,5 +1,5 @@
 import { useAppStore } from '../stores/app.ts';
-import { useShopListsStore } from '../stores/shopLists.ts';
+import { useProductsStore } from '../stores/products.ts';
 import { storage } from './storage.ts';
 
 export class PersistStore {
@@ -8,7 +8,7 @@ export class PersistStore {
   stores: Array<any> = [];
 
   constructor() {
-    this.stores = [useAppStore(), useShopListsStore()];
+    this.stores = [useAppStore(), useProductsStore()];
   }
 
   async hydrate() {
