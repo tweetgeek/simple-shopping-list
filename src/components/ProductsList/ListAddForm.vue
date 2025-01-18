@@ -14,7 +14,7 @@
           {{ $form.product.error?.message }}
         </Message>
       </div>
-      <Button type="button" label="Add product" @click.prevent.stop="onFormSubmit($form, {})" />
+      <Button type="button" label="Add product" @click.prevent.stop="onFormSubmit($form)" />
     </Form>
   </div>
 </template>
@@ -23,7 +23,7 @@
 import { Button, InputText, Message } from 'primevue';
 import { Form } from '@primevue/forms';
 import { useToast } from 'primevue/usetoast';
-import { onMounted, reactive, useTemplateRef } from 'vue';
+import { type ComponentPublicInstance, onMounted, reactive, useTemplateRef } from 'vue';
 import type { FormResolverOptions } from '@primevue/forms/form';
 import { useProductsStore } from '../../stores/products';
 
@@ -75,8 +75,7 @@ const onFormSubmit = (form: any) => {
     }, 100);
   }
 };
-
-const productInput = useTemplateRef('productInput');
+const productInput = useTemplateRef<ComponentPublicInstance>('productInput');
 
 onMounted(() => {
   setTimeout(() => {
