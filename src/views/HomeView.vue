@@ -28,7 +28,7 @@ const doneMeter = computed(() => {
     </template>
 
     <div class="flex flex-col w-full h-full overflow-hidden max-h-120">
-      <div class="flex flex-col w-full h-full gap-2">
+      <div class="flex flex-col w-full h-full gap-2 pb-4">
         <div class="flex flex-1 w-full justify-center">
           <p class="font-bold uppercase truncate">Products</p>
         </div>

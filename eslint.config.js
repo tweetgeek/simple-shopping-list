@@ -44,6 +44,7 @@ export default [
     files: ['**/*.{ts,vue}'],
     rules: {
       '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ];

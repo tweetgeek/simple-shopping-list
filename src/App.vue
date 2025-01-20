@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { nextTick, onMounted, ref } from 'vue';
 import OnboardingModal from './components/OnboardingModal.vue';
 import { Toast } from 'primevue';
 import { PersistStore } from './utils/PersistStore.ts';
@@ -21,7 +21,9 @@ onMounted(async () => {
     hasError.value = true;
     console.error(error);
   } finally {
-    isLoading.value = false;
+    await nextTick(() => {
+      isLoading.value = false;
+    });
   }
 });
 </script>

@@ -1,12 +1,6 @@
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 
-const STORAGE_VERSION = 'v0_3';
-
-export const DEFAULT_STORAGE_ITEM = {
-  value: '',
-  checked: false,
-  checkedAt: null,
-};
+const STORAGE_VERSION = 'v0_1';
 
 class Storage {
   async load(storeId: string) {
@@ -24,7 +18,6 @@ class Storage {
   }
 
   async save(storeId: string, payload: object) {
-    console.log(`save to file ${this.path(storeId)} : ${JSON.stringify(payload)}`);
     await Filesystem.writeFile({
       path: this.path(storeId),
       data: JSON.stringify(payload),

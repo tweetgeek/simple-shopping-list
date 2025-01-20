@@ -2,7 +2,7 @@
   <template v-if="props.products.length === 0">
     <p class="text-gray-500">No items in the list. Add some!</p>
   </template>
-  <div v-else class="w-full h-full overflow-auto pl-4 pr-4">
+  <div v-else class="w-full h-full overflow-auto pl-4 pr-4 pt-2">
     <ul class="flex flex-col gap-2 list-none">
       <li v-for="(product, index) in props.products" :key="index">
         <ListItem

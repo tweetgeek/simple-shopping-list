@@ -1,28 +1,38 @@
 import { useAppStore } from '../stores/app.ts';
 import { useProductsStore } from '../stores/products.ts';
 import { storage } from './storage.ts';
+import type { PiniaStore } from '~/utils/types.ts';
+import type { SubscriptionCallbackMutation } from 'pinia';
 
 export class PersistStore {
-  // stores: Array<PiniaStore<typeof useAppStore> | PiniaStore<typeof useShopListsStore>> = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  stores: Array<any> = [];
+  stores: Array<{
+    storageInstance: PiniaStore<typeof useAppStore> | PiniaStore<typeof useProductsStore>;
+    omit?: string[];
+  }> = [];
 
   constructor() {
-    this.stores = [useAppStore(), useProductsStore()];
+    this.stores = [
+      {
+        storageInstance: useAppStore(),
+        omit: ['editModeEnabled'],
+      },
+      {
+        storageInstance: useProductsStore(),
+      },
+    ];
   }
 
   async hydrate() {
-    console.log(this.stores);
     for (const store of this.stores) {
-      console.log('store', store);
-
-      const content = await storage.load(store.$id);
+      const content = await storage.load(store.storageInstance.$id);
       if (content) {
-        console.log('revert content');
+        if (store.omit) {
+          for (const key of store.omit) {
+            delete content[key];
+          }
+        }
         // @ts-ignore
-        store.$patch(content);
-
-        console.log('store', store, content);
+        store.storageInstance.$patch(content);
       }
     }
 
@@ -32,25 +42,32 @@ export class PersistStore {
   async bindSyncAction() {
     for (const store of this.stores) {
       // @ts-ignore
-      store.$subscribe((mutation, state) => {
-        if (mutation.events.type === 'set') {
-          console.log('mutation, state', mutation, state);
-
+      store.storageInstance.$subscribe(
+        (
+          mutation: SubscriptionCallbackMutation<
+            PiniaStore<typeof useAppStore> | PiniaStore<typeof useProductsStore>
+          >,
+        ) => {
           this.save(mutation.storeId);
-        }
-      });
+        },
+      );
     }
   }
 
   async save(storeId: string) {
     for (const store of this.stores) {
-      console.log(store.$id !== storeId, store.$id, storeId);
-      if (store.$id !== storeId) {
+      if (store.storageInstance.$id !== storeId) {
         continue;
       }
 
-      console.log(store.$state);
-      await storage.save(store.$id, store.$state);
+      const payload = store.storageInstance.$state;
+      if (store.omit) {
+        for (const key of store.omit) {
+          // @ts-ignore
+          delete payload[key];
+        }
+      }
+      await storage.save(store.storageInstance.$id, payload);
     }
   }
 }
