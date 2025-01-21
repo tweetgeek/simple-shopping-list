@@ -6,7 +6,7 @@ import type { SubscriptionCallbackMutation } from 'pinia';
 
 export class PersistStore {
   stores: Array<{
-    storageInstance: PiniaStore<typeof useAppStore> | PiniaStore<typeof useProductsStore>;
+    storageInstance: ReturnType<typeof useAppStore> | ReturnType<typeof useProductsStore>;
     omit?: string[];
   }> = [];
 

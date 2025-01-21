@@ -4,7 +4,6 @@ export interface Dict<V> {
   [key: string]: V;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PiniaStore<T extends (...args: any) => any> = Omit<
   ReturnType<T>,
   keyof ReturnType<typeof defineStore>
