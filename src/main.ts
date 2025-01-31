@@ -15,10 +15,10 @@ import * as Sentry from '@sentry/vue';
 SafeArea.enable({
   config: {
     customColorsForSystemBars: true,
-    statusBarColor: '#00000000', // transparent
-    statusBarContent: 'light',
-    navigationBarColor: '#00000000', // transparent
-    navigationBarContent: 'light',
+    statusBarColor: '#ffffff', // transparent
+    statusBarContent: 'dark',
+    navigationBarColor: '#ffffff', // transparent
+    navigationBarContent: 'dark',
   },
 });
 

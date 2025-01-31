@@ -4,10 +4,10 @@ const config: CapacitorConfig = {
   appId: 'pl.tweetgeek.simpleshoppinglist',
   appName: 'Simple Shopping List',
   webDir: 'dist',
-  server: {
-    url: 'http://localhost:5173',
-    cleartext: true,
-  },
+  // server: {
+  //   url: 'http://localhost:5173',
+  //   cleartext: true,
+  // },
   ios: {
     contentInset: 'always',
   },
@@ -15,10 +15,10 @@ const config: CapacitorConfig = {
     SafeArea: {
       enabled: true,
       customColorsForSystemBars: true,
-      statusBarColor: '#000000',
-      statusBarContent: 'light',
-      navigationBarColor: '#000000',
-      navigationBarContent: 'light',
+      statusBarColor: '#ffffff',
+      statusBarContent: 'dark',
+      navigationBarColor: '#ffffff',
+      navigationBarContent: 'dark',
       offset: 0,
     },
   },
